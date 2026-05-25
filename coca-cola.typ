@@ -42,27 +42,114 @@
   subtitle: [企業背景與品牌意義],
 )
 
-#cola-slide(title: [可口可樂公司簡介])[
-  #quote-block[
-    1886 年創立，從單一汽水品牌發展為全球性飲料公司。
-  ]
+// #cola-slide(title: [可口可樂公司簡介])[
+//   #quote-block[
+//     1886 年創立，從單一汽水品牌發展為全球性飲料公司。
+//   ]
 
-  - 佈局超過 200 個國家與地區
-  - 每日飲品消費量約 22 億杯
-  - 核心模式是品牌授權加在地裝瓶
-  - 2025 年營收約 479 億美元
+//   - 佈局超過 200 個國家與地區
+//   - 每日飲品消費量約 22 億杯
+//   - 核心模式是品牌授權加在地裝瓶
+//   - 2025 年營收約 479 億美元
+// ]
+//
+
+#cola-slide(title: [可口可樂公司簡介])[
+  #grid(
+    columns: (0.95fr, 1.55fr, 0.9fr),
+    column-gutter: 0.75cm,
+
+    [
+      #set text(size: 12.5pt)
+      #set par(leading: 1.3em)
+
+      #text(size: 17pt, weight: "bold")[品牌起點]
+      #v(0.08cm)
+      1886 年誕生於美國亞特蘭大，從一杯汽水擴展為全球飲料公司
+
+      #v(0.38cm)
+      #text(size: 17pt, weight: "bold")[全球規模]
+      #v(0.08cm)
+      產品銷售遍及 #impt[200 多個] 國家與地區，每日約 #impt[22 億] 杯飲品被消費
+
+      #v(0.38cm)
+      #text(size: 17pt, weight: "bold")[商業模式]
+      #v(0.08cm)
+      以濃縮液與品牌授權為核心，結合全球裝瓶夥伴完成在地通路
+    ],
+
+    [
+      #align(center)[
+        #image("figures/world-map.png", width: 125%)
+      ]
+    ],
+    [
+      #v(1.2cm)
+      #set text(size: 16pt)
+      #set par(leading: 1.2em)
+
+      #grid(
+        columns: (auto, 1fr),
+        column-gutter: 0.3cm,
+        row-gutter: 0.8cm,
+
+        [#align(right)[#text(size: 18pt, weight: "bold", fill: cola-red)[200 +]]], [國家與地區],
+
+        [#align(right)[#text(size: 18pt, weight: "bold", fill: cola-red)[2.2B]]], [每日飲品數],
+
+        [#align(right)[#text(size: 18pt, weight: "bold", fill: cola-red)[32]]], [十億美元級品牌],
+
+        [#align(right)[#text(size: 18pt, weight: "bold", fill: cola-red)[\$47.9B]]], [2025 年淨營收],
+      )
+    ],
+  )
 ]
 
 #cola-slide(title: [品牌介紹])[
-  #two-col-figure(
+  #let section-tag(body) = box(
+    fill: cola-red,
+    inset: (x: 0.18cm, y: 0.2cm),
+    radius: 0pt,
+  )[
+    #text(size: 16pt, weight: "bold", fill: white)[#body]
+  ]
+
+  #grid(
+    columns: (1.02fr, 0.92fr, 1.12fr),
+    column-gutter: 0.8cm,
+    align: top,
+
     [
-      - 品牌命名源自 coca 與 cola
-      - 經典紅白識別強化記憶點
-      - 核心情感是快樂、分享、陪伴
-      - 行銷語境多綁節慶、聚會與即飲時刻
+      #v(-0.5cm)
+      #section-tag([品牌背景])
+      #v(0.18cm)
+      #set text(size: 15pt)
+      #set par(leading: 1.55em)
+      1886 年由藥師 John S. Pemberton 使用 #strong[#link("https://zh.wikipedia.org/zh-tw/古柯")[古柯 (Coca)]、#link("https://zh.wikipedia.org/zh-tw/可樂果")[可樂果 (Cola)]]
+      調配而成的飲品，故名 Coca-Cola。
+
+      #v(0.5cm)
+      #section-tag([品牌設計])
+      #v(0.18cm)
+      可口可樂長期使用紅配色與經典字體設計，其中紅色代表
+      #strong[熱情、活力、快樂及刺激感]，強化品牌記憶點。
     ],
-    [品牌主視覺 / 產品圖],
-    title: [品牌主視覺 / 產品圖待補],
+
+    [
+      #align(center)[
+        #image("figures/coca-cola.png", height: 10.1cm)
+      ]
+    ],
+
+    [
+      #v(0cm)
+      #section-tag([品牌理念與行銷])
+      #v(0.35cm)
+      #set text(size: 15pt)
+      #set par(leading: 1.6em)
+      - #strong[快樂]：透過節慶活動、運動賽事等廣告情境，將喝可樂與快樂時刻做連結。
+      - #strong[分享]：透過家庭號包裝、聚餐等廣告情境，將品牌打造為聚會中的陪伴者及情感交流媒介。
+    ],
   )
 ]
 
