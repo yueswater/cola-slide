@@ -30,29 +30,41 @@
 #cola-title-slide()
 
 #cola-slide(title: [目錄])[
-  1. 公司與品牌
-  2. SKU 與包裝
-  3. 7-11 通路觀察
-  4. 家樂福通路觀察
-  5. 結論
+  #let toc-item(n, dest, body) = link(dest)[
+    #grid(
+      columns: (0.8cm, 1fr),
+      column-gutter: 0.9cm,
+      align: horizon,
+      [
+        #v(0.04cm)
+        #box(fill: cola-red, inset: (x: 0.2cm, y: 0.2cm))[
+          #text(size: 20pt, weight: "bold", fill: white)[#n]
+        ]
+      ],
+      [
+        #text(size: 20pt, weight: "medium", fill: cola-red)[#body]
+      ],
+    )
+  ]
+
+  #v(0.8cm)
+  #grid(
+    columns: (1fr, 1fr),
+    column-gutter: -2cm,
+    row-gutter: 1.2cm,
+
+    [#toc-item([1], <section-company>, [公司與品牌])], [#toc-item([4], <section-familymart>, [全家通路觀察])],
+
+    [#toc-item([2], <section-sku>, [SKU & 包裝分析])], [#toc-item([5], <section-pxmart>, [全聯通路觀察])],
+
+    [#toc-item([3], <section-711>, [7-11 通路觀察])], [#toc-item([6], <section-carrefour>, [家樂福通路觀察])],
+  )
 ]
 
 #cola-section-slide(
-  title: [公司與品牌],
+  title: [公司與品牌 <section-company>],
   subtitle: [企業背景與品牌意義],
 )
-
-// #cola-slide(title: [可口可樂公司簡介])[
-//   #quote-block[
-//     1886 年創立，從單一汽水品牌發展為全球性飲料公司。
-//   ]
-
-//   - 佈局超過 200 個國家與地區
-//   - 每日飲品消費量約 22 億杯
-//   - 核心模式是品牌授權加在地裝瓶
-//   - 2025 年營收約 479 億美元
-// ]
-//
 
 #cola-slide(title: [可口可樂公司簡介])[
   #grid(
@@ -154,7 +166,7 @@
 ]
 
 #cola-section-slide(
-  title: [SKU 分析],
+  title: [SKU & 包裝分析 <section-sku>],
   subtitle: [口味與包裝結構],
 )
 
@@ -191,7 +203,7 @@
 ]
 
 #cola-section-slide(
-  title: [7-11 通路],
+  title: [7-11 通路 <section-711>],
   subtitle: [即飲導向的便利商店場景],
 )
 
@@ -269,7 +281,193 @@
 ]
 
 #cola-section-slide(
-  title: [家樂福通路],
+  title: [全家通路 <section-familymart>],
+  subtitle: [微型超市中的目的性即飲場景],
+)
+
+#cola-slide(title: [全家通路背景])[
+  #two-col-figure(
+    [
+      - 勘查地點為#link("https://maps.app.goo.gl/TGA2jQQNpc8RWtWH8")[全家逸鑫店]，位於信義區住商混合區一樓
+      - 屬巷弄型微型超市，兼具 FamiSuper 生鮮冷凍與 App 團購服務
+      - 可口可樂主要放在店底封閉式冷藏櫃，需開門取用
+      - 核心不是大量囤貨，而是目的性購買加視覺聚焦
+    ],
+    [全家勘查地點與通路特色],
+    title: [全家勘查地點 / 冰箱照片待補],
+  )
+]
+
+#cola-slide(title: [全家價格矩陣])[
+  #v(-0.5cm)
+  #align(center)[
+    #table-block(
+      [全家可口可樂價格矩陣],
+      ([品項], [售價], [促銷], [每100ml單價], [策略定位]),
+      (
+        ([經典原味 2L], [\$60], [無], [#impt[\$3.00]#note-ref(1)], [計畫性微囤貨]),
+        ([Zero 330ml], [\$25], [無], [#expen[\$7.58]#note-ref(2)], [無糖小容量補貨]),
+        ([經典原味 600ml], [\$35], [2 件 \$49], [約 \$4.08], [黃金視線帶主促銷]),
+        ([Zero 600ml], [\$35], [2 件 \$49], [約 \$4.08], [無糖即飲主力]),
+      ),
+      (5.5cm, 2.5cm, 3.6cm, 5cm, 7.2cm),
+      header-size: cola-font-size-table-header-compact,
+    )
+  ]
+]
+
+#cola-slide(title: [全家價格矩陣])[
+  #align(center)[
+    #table-block(
+      [全家可口可樂價格矩陣（續）],
+      ([品項], [售價], [促銷], [每100ml單價], [策略定位]),
+      (
+        ([經典原味 330ml], [\$25], [無], [#expen[\$7.58]#note-ref(2)], [入門即飲、精準解渴]),
+        ([纖維+ 600ml], [\$35], [2 件 \$49], [約 \$4.08], [功能性高單價銷售]),
+        ([水蜜桃 600ml], [\$35], [2 件 \$49], [約 \$4.08], [季節限定、創造話題與新鮮感]),
+      ),
+      (5.5cm, 2.5cm, 3.6cm, 5cm, 7.2cm),
+      header-size: cola-font-size-table-header-compact,
+    )
+  ]
+  #v(-0.45cm)
+  #note-block((
+    ("1", [單位價格最低]),
+    ("2", [單位價格最高]),
+  ))
+]
+
+#cola-slide(title: [全家冰箱區陳列原理])[
+  #two-col-figure(
+    [
+      - 全部放在玻璃門型冷藏櫃，沒有常溫陳列
+      - 600ml 主力集中在 7 層冰箱中段第 4 層黃金視線帶
+      - 2L 放最底層，330ml 次之，整體 SKU 比其他通路更精簡
+      - 深店位加封閉櫃型，使購買更偏向目的明確的消費者
+    ],
+    [全家冰箱區陳列],
+    title: [全家封閉式冰櫃照片待補],
+  )
+]
+
+#cola-slide(title: [全家的分流定價])[
+  - 開放式冷藏櫃偏配餐飲料，可口可樂則留在更冰的封閉式玻璃冰櫃
+  - 中段視線帶的 600ml 承接即飲需求，最底層 2L 承接家庭型補貨
+  - 封閉式冰櫃的整齊排面與低溫表現，強化可樂的冰感與氣泡感
+  - 全家把即時解渴與計畫性購買壓縮在同一座店底冰櫃中完成
+]
+
+#cola-section-slide(
+  title: [全聯通路 <section-pxmart>],
+  subtitle: [社區超市的囤貨與即飲雙軌],
+)
+
+#cola-slide(title: [全聯通路背景])[
+  #two-col-figure(
+    [
+      - 勘查地點為#link("https://maps.app.goo.gl/yW5KF31RnMVEkBNN7")[全聯內湖文湖店]，位於住宅區大樓 B1
+      - 動線依序經過生鮮冷凍大冰箱、常溫日用飲料貨架，再到結帳
+      - 可口可樂主要設在中後段，不靠入口搶眼位置
+      - 通路任務同時包含家庭補貨與即時飲用
+    ],
+    [全聯勘查地點與賣場動線],
+    title: [全聯勘查地點 / 動線照片待補],
+  )
+]
+
+#cola-slide(title: [全聯價格矩陣])[
+  #v(-0.5cm)
+  #align(center)[
+    #table-block(
+      [全聯可口可樂價格矩陣],
+      ([品項], [零售價], [促銷], [冰箱陳列], [每100ml單價], [策略定位]),
+      (
+        ([經典原味 2L], [\$45], [常態低價], [否], [#impt[\$2.25]#note-ref(1)], [對標量販店 #linebreak() 全場最划算]),
+        ([經典原味 1.25L], [\$35], [常態銷售], [否], [\$2.80], [家庭補貨主力]),
+        ([經典原味 600ml], [\$26], [任 4 瓶 \$89], [是], [\$3.71], [折扣力道最大 #linebreak() *吸引囤貨*]),
+        ([Zero 600ml], [\$26], [任 4 瓶 \$89], [是], [\$3.71], [無糖即飲主力]),
+      ),
+      (5.5cm, 2.5cm, 4cm, 3cm, 4.5cm, 5.6cm),
+      header-size: cola-font-size-table-header-compact,
+    )
+  ]
+]
+
+#cola-slide(title: [全聯價格矩陣])[
+  #align(center)[
+    #table-block(
+      [全聯可口可樂價格矩陣（續）],
+      ([品項], [零售價], [促銷], [冰箱陳列], [每100ml單價], [策略定位]),
+      (
+        (
+          [330ml 6 入組 #linebreak() (拆算)],
+          [約 \$18],
+          [僅售組裝],
+          [否],
+          [#expen[\$5.45]#note-ref(2)],
+          [鎖定罐裝囤貨需求],
+        ),
+        ([纖維+ 600ml], [\$28], [無], [否], [\$4.67], [功能性高單價銷售]),
+      ),
+      (5.5cm, 2.5cm, 4cm, 3cm, 4.5cm, 5.6cm),
+      header-size: cola-font-size-table-header-compact,
+    )
+  ]
+  #v(-0.45cm)
+  #note-block((
+    ("1", [單位價格最低]),
+    ("2", [單位價格最高]),
+  ))
+]
+
+#cola-slide(title: [全聯常溫貨架分析])[
+  #two-col-figure(
+    [
+      - 碳酸品類約 60 格貨架，可口可樂約占 7 格
+      - 視覺佔有率約 14%，低於家樂福但仍維持完整存在感
+      - 由上到下都有可口可樂 SKU，形成垂直縱向佔據
+      - 重點不是 SKU 廣度，而是用少量規格覆蓋多種家庭需求
+    ],
+    [全聯常溫貨架排面],
+    title: [全聯常溫貨架照片待補],
+  )
+]
+
+#cola-slide(title: [全聯常溫區陳列原理])[
+  #two-col-figure(
+    [
+      - 底層放 1.25L 與 2L，大瓶可直接平移進購物車
+      - 中層放 330ml 6 入組與 600ml 單瓶，抬高最低消費門檻
+      - 上層放纖維+與 Zero，承接健康與功能訴求
+      - 全聯精選囤貨型規格，不追求像量販店那樣的全面 SKU
+    ],
+    [全聯常溫區陳列細節],
+    title: [全聯常溫區細部照片待補],
+  )
+]
+
+#cola-slide(title: [全聯冰箱區陳列原理])[
+  #two-col-figure(
+    [
+      - 冷藏櫃位於後段，主力集中在成人視線附近的黃金層
+      - 經典原味 600ml 約有 3 格排面，Zero 600ml 約有 2 格排面
+      - 冰櫃承接晚餐搭配生鮮、熟食的現喝需求
+      - 任 4 瓶 \$89 讓冷藏即飲與常溫囤貨共享同一組促銷邏輯
+    ],
+    [全聯冰箱區陳列],
+    title: [全聯冰箱照片待補],
+  )
+]
+
+#cola-slide(title: [全聯的分流定價])[
+  - 常溫區以 2L 與 1.25L 對標量販店，吸引社區家庭一次補貨
+  - 冷藏冰箱以 600ml 大排面與低門檻促銷，承接即時解渴需求
+  - 同一組價格結構同時服務囤貨與即飲兩種情境
+  - 全聯用量販低價混搭超商冰櫃能見度，擴大社區市佔
+]
+
+#cola-section-slide(
+  title: [家樂福通路 <section-carrefour>],
   subtitle: [量販店的分流定價與陳列],
 )
 
@@ -365,7 +563,7 @@
       - 上層放 2L 與大瓶，對應囤貨需求
       - 黃金視線帶放 600ml 與促銷 POP
       - 中下層放 330ml 組裝與迷你罐
-      - 重點不是賣單瓶，而是提高每次最低消費額
+      - 重點不是賣單瓶，而是*提高每次最低消費額*
     ],
     [家樂福常溫區陳列細節],
     title: [常溫區細部照片待補],
@@ -390,18 +588,4 @@
   - 冷藏冰箱負責賺毛利，以即飲便利承接熟食與結帳動線
   - 同品牌在不同區域，價格角色完全不同
   - 這是典型的分流定價與場景定價
-]
-
-#cola-section-slide(
-  title: [結論],
-  subtitle: [兩種通路，兩套邏輯],
-)
-
-#cola-slide(title: [結論])[
-  #color-block(title: [通路對比])[
-    - 7-11 重點是冷藏即飲、快速拿取、第二件促銷
-    - 家樂福重點是常溫囤貨、冷藏即飲、分區定價
-    - 便利商店賣的是便利與即時性
-    - 量販店賣的是價格效率與分流獲利
-  ]
 ]
