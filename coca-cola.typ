@@ -30,13 +30,11 @@
 #cola-title-slide()
 
 #cola-slide(title: [目錄])[
-  #color-block(title: [報告架構])[
-    1. 公司與品牌
-    2. SKU 與包裝
-    3. 7-11 通路觀察
-    4. 家樂福通路觀察
-    5. 結論
-  ]
+  1. 公司與品牌
+  2. SKU 與包裝
+  3. 7-11 通路觀察
+  4. 家樂福通路觀察
+  5. 結論
 ]
 
 #cola-section-slide(
