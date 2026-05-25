@@ -1,0 +1,421 @@
+#import "@preview/definitely-not-isec-slides:1.0.1": *
+#import "@preview/touying:0.6.1": components, config-page, touying-slide, touying-slide-wrapper, utils
+#import "@preview/tiaoma:0.3.0"
+
+#let fig-counter = counter("cola-figure")
+#let tab-counter = counter("cola-table")
+
+#let cola-font-size-body = 20pt
+// Base body text for regular slide content.
+
+#let cola-font-size-slide-header-title = 26pt
+// Top-left slide title on regular slides.
+
+#let cola-font-size-slide-header-institute = 13.5pt
+// Top-right institute label on regular slides.
+
+#let cola-font-size-slide-footer-base = 15pt
+// Default footer text size before local footer overrides.
+
+#let cola-font-size-slide-footer-number = 12pt
+// Slide number inside the footer badge.
+
+#let cola-font-size-slide-footer-text = 13pt
+// Footer text next to the slide number.
+
+#let cola-font-size-title-slide-footer-institute = 13.3pt
+// Institute label in the title slide footer.
+
+#let cola-font-size-title-slide-title = 40.5pt
+// Main presentation title on the title slide.
+
+#let cola-font-size-title-slide-subtitle = 28.3pt
+// Subtitle below the main title on the title slide.
+
+#let cola-font-size-title-slide-authors = 19pt
+// Author list on the title slide.
+
+#let cola-font-size-title-slide-extra = 20pt
+// Extra line below the author list on the title slide.
+
+#let cola-font-size-section-slide-title = 36pt
+// Section slide title in the center of the page.
+
+#let cola-font-size-section-slide-subtitle = 20pt
+// Section slide subtitle below the section title.
+
+#let cola-font-size-image-slot = 18pt
+// Placeholder text inside empty image slots.
+
+#let cola-font-size-caption = 12pt
+// Figure and table caption text.
+
+#let cola-figure-caption-gap = 0.45em
+// Vertical gap between a figure and its caption.
+
+#let cola-table-caption-gap = 0.15em
+// Vertical gap between a table and its caption.
+
+#let cola-font-size-table-header = 14pt
+// Default table header text.
+
+#let cola-font-size-table-header-compact = 16pt
+// Compact table header text for dense tables.
+
+#let cola-font-size-table-body = 16pt
+// Default table body text.
+
+#let cola-table-header-leading = 1.2em
+// Line height for table header text.
+
+#let cola-table-body-leading = 1.2em
+// Line height for table body text.
+
+#let cola-table-header-cell-inset-x = 9pt
+// Left and right padding for table header cells.
+
+#let cola-table-header-cell-inset-y = 9pt
+// Top and bottom padding for table header cells.
+
+#let cola-table-body-cell-inset-x = 9pt
+// Left and right padding for table body cells.
+
+#let cola-table-body-cell-inset-y = 16pt
+// Top and bottom padding for table body cells.
+
+#let cola-font-size-bibliography = 17pt
+// Bibliography text.
+
+#let cola-font-size-code-block = 13pt
+// Block code text.
+
+#let cola-color-link = rgb("e4154b")
+// Link text color across the presentation.
+
+#let cola-theme-institute-label(self) = [
+  #block[
+    #text(size: cola-font-size-slide-header-institute, weight: "medium")[
+      #self.store.institute
+    ]
+    #h(0.1cm)
+    #box(inset: 0pt, outset: 0pt)[#square(
+      width: 0.3cm,
+      height: 0.3cm,
+      outset: 0pt,
+      inset: 0pt,
+      stroke: none,
+      fill: self.colors.primary,
+    )]
+  ]
+]
+
+#let cola-theme(..args, body) = definitely-not-isec-theme(..args)[
+  #set text(size: cola-font-size-body)
+  #show link: set text(fill: cola-color-link)
+  #show bibliography: set text(cola-font-size-bibliography)
+  #show bibliography: t => {
+    show link: set text(fill: cola-color-link)
+    t
+  }
+  #show raw.where(block: true): set text(size: cola-font-size-code-block)
+  #set par(leading: 1.2em)
+  #fig-counter.update(1)
+  #tab-counter.update(1)
+  #body
+]
+
+#let slide(
+  title: auto,
+  alignment: none,
+  outlined: true,
+  ..args,
+) = touying-slide-wrapper(self => {
+  let info = self.info + args.named()
+
+  let header(self) = {
+    let hdr = if title != auto { title } else { self.store.header }
+
+    show heading: set text(size: cola-font-size-slide-header-title, weight: "semibold")
+
+    grid(
+      columns: (self.page.margin.left, 1fr, 1cm, auto, 1.2cm),
+      block(),
+      heading(level: 1, outlined: outlined, hdr),
+      block(),
+      move(dy: -0.31cm, cola-theme-institute-label(self)),
+      block(),
+    )
+  }
+
+  let footer(self) = context {
+    set block(height: 100%, width: 100%)
+    set text(size: cola-font-size-slide-footer-base, fill: self.colors.footer)
+
+    grid(
+      columns: (self.page.margin.bottom - 1.68%, 1.3%, auto, 1cm),
+      block(fill: self.colors.primary)[
+        #set align(center + horizon)
+        #set text(fill: white, size: cola-font-size-slide-footer-number)
+        #utils.slide-counter.display()
+      ],
+      block(),
+      block[
+        #set align(left + horizon)
+        #set text(size: cola-font-size-slide-footer-text)
+        #info.at("footer", default: "")
+      ],
+      block(),
+    )
+
+    if self.store.progress-bar {
+      place(bottom + left, float: true, move(dy: 1.05cm, components.progress-bar(
+        height: 3pt,
+        self.colors.primary,
+        white,
+      )))
+    }
+  }
+
+  let self = utils.merge-dicts(self, config-page(
+    header: header,
+    footer: footer,
+  ))
+
+  set align(
+    if alignment == none {
+      self.store.default-alignment
+    } else {
+      alignment
+    },
+  )
+
+  touying-slide(self: self, ..args)
+})
+
+#let title-slide(..args) = touying-slide-wrapper(self => {
+  let info = self.info + args.named()
+  let body = {
+    let footer-institute = [
+      #set text(size: cola-font-size-title-slide-footer-institute, weight: "medium")
+
+      #let arrow-icon = [
+        #move(dy: -0.05cm, dx: -0.05cm, rotate(45deg, square(
+          fill: none,
+          size: 0.18cm,
+          stroke: (
+            "top": self.colors.primary + 1.35pt,
+            "bottom": none,
+            "right": self.colors.primary + 1.35pt,
+            "left": none,
+          ),
+        )))
+      ]
+
+      #v(-0.5cm)
+      #box(arrow-icon) #h(0.1cm) #self.store.institute
+    ]
+
+    set page(footer: footer-institute, header: none)
+    set block(below: 0pt, above: 0pt)
+
+    place(top + right, dy: -1.9cm, dx: 0.78cm, [
+      #self.store.logo
+    ])
+
+    v(0.8cm)
+
+    block(width: 83%)[
+      #let title = text(size: cola-font-size-title-slide-title, weight: "bold")[
+        #info.at("title", default: "")
+      ]
+
+      #move(dx: 0.04em)[
+        #grid(
+          columns: (0.195cm, auto),
+          column-gutter: 0.7cm,
+          context [
+            #let s = measure(title)
+            #move(dy: -0.4cm, rect(
+              fill: self.colors.primary,
+              height: s.height + 0.65cm,
+            ))
+          ],
+          title,
+        )
+      ]
+    ]
+
+    v(0.6cm)
+
+    block(width: 70%)[
+      #text(
+        size: cola-font-size-title-slide-subtitle,
+        fill: self.colors.primary,
+        weight: "bold",
+      )[#info.subtitle]
+    ]
+
+    v(1.48cm)
+
+    block(width: 70%)[
+      #set text(size: cola-font-size-title-slide-authors)
+      #if type(info.authors) == array [
+        #for author in info.authors [
+          #author #h(1.1em)
+        ]
+      ] else [
+        #info.authors
+      ]
+    ]
+
+    v(0.95cm)
+
+    block(width: 70%)[
+      #text(size: cola-font-size-title-slide-extra)[#info.extra]
+    ]
+
+    if (
+      self.info.at("download-qr", default: none) != none and self.info.at("download-qr", default: none) != ""
+    ) {
+      place(bottom + right)[
+        #align(center + horizon)[
+          #let s = 4.9cm
+          #tiaoma.qrcode(self.info.download-qr, width: s, height: s)
+        ]
+      ]
+    }
+  }
+
+  touying-slide(self: self, body)
+})
+
+#let cola-title-slide(..args) = title-slide(..args)
+
+#let cola-section-slide(title: none, subtitle: none, ..args) = section-slide(
+  title: title,
+  subtitle: subtitle,
+  ..args,
+)
+
+#let section-slide(
+  title: none,
+  subtitle: none,
+  ..args,
+) = touying-slide-wrapper(self => {
+  let body = {
+    align(center + horizon)[
+      #move(dy: -0.4cm)[
+        #if title != none [
+          #text(size: cola-font-size-section-slide-title, weight: "semibold")[#title]
+        ]
+
+        #if subtitle != none [
+          #text(size: cola-font-size-section-slide-subtitle)[#subtitle]
+        ]
+      ]
+    ]
+  }
+
+  let self = utils.merge-dicts(self, config-page(
+    header: none,
+    footer: none,
+  ))
+
+  touying-slide(self: self, body, ..args)
+})
+
+#let cola-slide(title: auto, ..args, body) = slide(title: title, ..args)[
+  #v(2em)
+  #body
+]
+
+#let image-slot(title: [圖片待補]) = rect(
+  width: 100%,
+  height: 8.5cm,
+  radius: 10pt,
+  stroke: 1.2pt + rgb("d6d6d6"),
+  fill: rgb("fafafa"),
+)[
+  #align(center + horizon)[
+    #text(size: cola-font-size-image-slot, fill: gray)[#title]
+  ]
+]
+
+#let two-col(left, right) = grid(
+  columns: (1.05fr, 0.95fr),
+  column-gutter: 1.1cm,
+  left, right,
+)
+
+#let caption-block(prefix, caption, c, gap) = context {
+  let n = c.get().first()
+  c.step()
+  v(gap)
+  align(center)[
+    #text(size: cola-font-size-caption, fill: gray)[#prefix #n #h(0.4em) #caption]
+  ]
+}
+
+#let figure-caption(caption) = caption-block([圖], caption, fig-counter, cola-figure-caption-gap)
+#let table-caption(caption) = caption-block([表], caption, tab-counter, cola-table-caption-gap)
+
+#let figure-slot(caption, title: [圖片待補]) = [
+  #image-slot(title: title)
+  #figure-caption(caption)
+]
+
+#let two-col-figure(left, caption, title: [圖片待補]) = two-col(
+  left,
+  figure-slot(caption, title: title),
+)
+
+#let table-block(
+  caption,
+  headers,
+  rows,
+  widths,
+  header-size: cola-font-size-table-header,
+  body-size: cola-font-size-table-body,
+  header-leading: cola-table-header-leading,
+  body-leading: cola-table-body-leading,
+  header-cell-inset: (
+    x: cola-table-header-cell-inset-x,
+    y: cola-table-header-cell-inset-y,
+  ),
+  body-cell-inset: (
+    x: cola-table-body-cell-inset-x,
+    y: cola-table-body-cell-inset-y,
+  ),
+  body-align: center + horizon,
+) = [
+  #set text(size: body-size)
+  #set par(leading: body-leading)
+
+  #table(
+    columns: widths,
+    inset: body-cell-inset,
+    stroke: (x, y) => 0.6pt + rgb("d7d7d7"),
+
+    table.header(
+      ..headers.map(h => table.cell(
+        fill: rgb("e4154b"),
+        inset: header-cell-inset,
+        align: center + horizon,
+      )[
+        #set par(leading: header-leading)
+        #text(size: header-size, fill: white, weight: "bold")[#h]
+      ]),
+    ),
+
+    ..rows
+      .flatten()
+      .map(cell => table.cell(
+        align: body-align,
+        inset: body-cell-inset,
+      )[
+        #cell
+      ]),
+  )
+
+  #table-caption(caption)
+]
