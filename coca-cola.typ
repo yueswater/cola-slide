@@ -1,4 +1,5 @@
 #import "cola-template.typ": *
+#import "@preview/fontawesome:0.5.0": fa-icon
 
 #show: cola-theme.with(
   aspect-ratio: "16-9",
@@ -208,16 +209,25 @@
 )
 
 #cola-slide(title: [7-11 勘查背景與通路特色])[
-  #two-col-figure(
+  #grid(
+    columns: (1.22fr, 0.78fr),
+    column-gutter: 0.45cm,
     [
-      - 地點位於#link("https://maps.app.goo.gl/6mKwD21AEyCy3kNM6")[桃園成達門市]
-      - 通路型態是便利商店，決策速度快
-      - 主戰場在冷藏飲料櫃，不靠大量囤貨
-      - 競品集中在茶飲、水、咖啡與能量飲
-      - 核心價值是冷藏即飲、快速拿取、順手加購
+      #box(inset: (left: 0.55cm))[
+        #v(1.2cm)
+        - 地點位於#link("https://maps.app.goo.gl/6mKwD21AEyCy3kNM6")[桃園成達門市]
+        - 通路型態是便利商店，決策速度快
+        - 主戰場在冷藏飲料櫃，不靠大量囤貨
+        - 競品集中在茶飲、水、咖啡與能量飲
+        - 核心價值是冷藏即飲、快速拿取、順手加購
+      ]
     ],
-    [7-11 現場勘查照片],
-    title: [7-11 現場照片待補],
+    [
+      #v(0.8cm)
+      #align(left)[
+        #image("figures/711/7-11桃園成德店.jpeg", width: 90%)
+      ]
+    ],
   )
 ]
 
@@ -254,15 +264,61 @@
 ]
 
 #cola-slide(title: [7-11 冷藏陳列])[
-  #two-col-figure(
+  #let section-tag(body) = box(
+    fill: cola-red,
+    inset: (x: 0.18cm, y: 0.2cm),
+    radius: 0pt,
+  )[
+    #text(size: 20pt, weight: "bold", fill: white)[#body]
+  ]
+
+  #v(-1.5cm)
+
+  #grid(
+    columns: (1fr, 1fr, 1fr, 1fr),
+    column-gutter: 0.45cm,
     [
-      - 600ml 選擇最多，是即飲主力
-      - 435ml 搭配明顯促銷標籤，放大第二件誘因
-      - 920ml 與 2L 雖便宜，但更偏帶回家或多人分享
-      - 陳列邏輯是冷藏即飲加多規格選擇
+      #section-tag([600ml])
+      #v(0.18cm)
+      #text("選擇最多，主力即飲規格", size: 15pt)
     ],
-    [7-11 冷藏櫃陳列],
-    title: [7-11 冷藏櫃 / 冰箱照片待補],
+    [
+      #section-tag([435ml])
+      #v(0.18cm)
+      #text("第二件促銷明顯帶動加購", size: 15pt)
+    ],
+    [
+      #section-tag([920ml])
+      #v(0.18cm)
+      #text("偏向帶回家，非即飲主力", size: 15pt)
+    ],
+    [
+      #section-tag([2L])
+      #v(0.18cm)
+      #text("單價最低，用於分享囤貨", size: 15pt)
+    ],
+  )
+
+  #v(0.5cm)
+
+  #grid(
+    columns: (1fr, 1fr, 1fr),
+    column-gutter: 0.35cm,
+    [
+      #align(center)[
+        #image("figures/711/7-11冰箱陳列-1.jpeg", width: 70%)
+      ]
+    ],
+    [
+      #align(center)[
+        #image("figures/711/7-11冰箱陳列-2.jpeg", width: 70%)
+      ]
+    ],
+    [
+      #align(center)[
+        #image("figures/711/7-11冰箱陳列-3.jpeg", width: 70%)
+      ]
+    ],
   )
 ]
 
@@ -286,15 +342,27 @@
 )
 
 #cola-slide(title: [全家通路背景])[
-  #two-col-figure(
+  #v(-2cm)
+  #grid(
+    columns: (1.22fr, 0.78fr),
+    column-gutter: 0.45cm,
     [
-      - 勘查地點為#link("https://maps.app.goo.gl/TGA2jQQNpc8RWtWH8")[全家逸鑫店]，位於信義區住商混合區一樓
-      - 屬巷弄型微型超市，兼具 FamiSuper 生鮮冷凍與 App 團購服務
-      - 可口可樂主要放在店底封閉式冷藏櫃，需開門取用
-      - 核心不是大量囤貨，而是目的性購買加視覺聚焦
+      #box(inset: (left: 0.55cm))[
+        #v(1.5cm)
+        - 勘查地點為#link("https://maps.app.goo.gl/TGA2jQQNpc8RWtWH8")[全家逸鑫店] #linebreak() #v(-0.1em) #text("位於信義區住商混合區一樓", size: 16pt, fill: gray)
+        - 屬巷弄型微型超市
+          - FamiSuper 生鮮冷凍
+          - App 團購服務
+        - 可口可樂主要放在店底封閉式冷藏櫃
+        - 核心不是大量囤貨 $arrow.r$ 目的性購買 & 視覺聚焦
+      ]
     ],
-    [全家勘查地點與通路特色],
-    title: [全家勘查地點 / 冰箱照片待補],
+    [
+      #v(2cm)
+      #align(left)[
+        #image("figures/FamiMart/全家逸鑫店.jpg", width: 90%)
+      ]
+    ],
   )
 ]
 
@@ -337,16 +405,29 @@
   ))
 ]
 
-#cola-slide(title: [全家冰箱區陳列原理])[
-  #two-col-figure(
+#cola-slide(title: [全家冰箱區陳列])[
+  #v(-2cm)
+  #grid(
+    columns: (1.22fr, 0.78fr),
+    column-gutter: 0.45cm,
     [
-      - 全部放在玻璃門型冷藏櫃，沒有常溫陳列
-      - 600ml 主力集中在 7 層冰箱中段第 4 層黃金視線帶
-      - 2L 放最底層，330ml 次之，整體 SKU 比其他通路更精簡
-      - 深店位加封閉櫃型，使購買更偏向目的明確的消費者
+      #box(inset: (left: 0.55cm))[
+        #v(1.5cm)
+        - 全數放在玻璃門冷藏櫃，無常溫陳列
+        - 600ml 主力集中在 7 層冰箱中段*第 4 層*
+          #linebreak() $arrow.r$ *黃金視線帶*
+        - 2L 在最底層，330ml 次之
+          #linebreak() $arrow.r$ 整體 SKU 較其他通路精簡
+        - 深店位與封閉櫃型
+          #linebreak() $arrow.r$ 讓購買更偏向*目的明確的消費者*
+      ]
     ],
-    [全家冰箱區陳列],
-    title: [全家封閉式冰櫃照片待補],
+    [
+      #v(0.8cm)
+      #align(center)[
+        #image("figures/FamiMart/全家冰箱區陳列.jpeg", width: 85%)
+      ]
+    ],
   )
 ]
 
@@ -363,15 +444,28 @@
 )
 
 #cola-slide(title: [全聯通路背景])[
-  #two-col-figure(
+  #v(-2cm)
+  #grid(
+    columns: (1fr, 1fr),
+    column-gutter: 0.45cm,
     [
-      - 勘查地點為#link("https://maps.app.goo.gl/yW5KF31RnMVEkBNN7")[全聯內湖文湖店]，位於住宅區大樓 B1
-      - 動線依序經過生鮮冷凍大冰箱、常溫日用飲料貨架，再到結帳
-      - 可口可樂主要設在中後段，不靠入口搶眼位置
-      - 通路任務同時包含家庭補貨與即時飲用
+      #box(inset: (left: 0.55cm))[
+        #v(1.5cm)
+        - 勘查地點為#link("https://maps.app.goo.gl/yW5KF31RnMVEkBNN7")[全聯內湖文湖店] #linebreak() #v(-0.1em) #text("位於住宅區大樓 B1", size: 16pt, fill: gray)
+        - 動線
+          1. 生鮮冷凍大冰箱
+          2. 常溫日用飲料貨架
+          3. 結帳
+        - 可口可樂設於中後段
+          #linebreak() $arrow.r$ *不靠入口搶眼位置*
+      ]
     ],
-    [全聯勘查地點與賣場動線],
-    title: [全聯勘查地點 / 動線照片待補],
+    [
+      #v(2.5cm)
+      #align(left)[
+        #image("figures/PXMart/全聯內湖文湖店.png", width: 100%)
+      ]
+    ],
   )
 ]
 
@@ -420,50 +514,104 @@
   ))
 ]
 
+
 #cola-slide(title: [全聯常溫貨架分析])[
-  #two-col-figure(
+  #v(-2cm)
+  #grid(
+    columns: (1.22fr, 0.78fr),
+    column-gutter: 0.45cm,
     [
-      - 碳酸品類約 60 格貨架，可口可樂約占 7 格
-      - 視覺佔有率約 14%，低於家樂福但仍維持完整存在感
-      - 由上到下都有可口可樂 SKU，形成垂直縱向佔據
-      - 重點不是 SKU 廣度，而是用少量規格覆蓋多種家庭需求
+      #box(inset: (left: 0.55cm))[
+        #v(1.5cm)
+        - 碳酸品類 $approx$ 60 格貨架，可口可樂 $approx$ 7 格
+        - 視覺佔有率約 14%
+          #linebreak() $arrow.r$ 低於家樂福但*仍維持完整存在感*
+        - 由上到下都有可口可樂 SKU
+          #linebreak() $arrow.r$ *垂直縱向佔據*
+        - 重點不是 SKU 廣度，而以少量規格覆蓋多種家庭需求
+      ]
     ],
-    [全聯常溫貨架排面],
-    title: [全聯常溫貨架照片待補],
+    [
+      // #v(0cm)
+      #align(center)[
+        #image("figures/PXMart/全聯常溫貨架分析.png", width: 85%)
+      ]
+    ],
   )
 ]
 
-#cola-slide(title: [全聯常溫區陳列原理])[
-  #two-col-figure(
+#cola-slide(title: [全聯常溫貨架分析])[
+  #v(-2cm)
+  #let section-tag(body) = box(
+    fill: cola-red,
+    inset: (x: 0.18cm, y: 0.2cm),
+    radius: 0pt,
+  )[
+    #text(size: 20pt, weight: "bold", fill: white)[#body]
+  ]
+
+  #grid(
+    columns: (1.22fr, 0.78fr),
+    column-gutter: 0.45cm,
     [
-      - 底層放 1.25L 與 2L，大瓶可直接平移進購物車
-      - 中層放 330ml 6 入組與 600ml 單瓶，抬高最低消費門檻
-      - 上層放纖維+與 Zero，承接健康與功能訴求
-      - 全聯精選囤貨型規格，不追求像量販店那樣的全面 SKU
+      #box(inset: (left: 0.55cm))[
+        #v(1cm)
+        #section-tag([底層])
+        #v(0.18cm)
+        #text(size: 17.5pt)[1.25L 與 2L 放底層，大瓶可直接平移進購物車]
+        #v(0.35cm)
+        #section-tag([中層])
+        #v(0.18cm)
+        #text(size: 17.5pt)[330ml 6 入組與 600ml 單瓶放中層，抬高最低消費門檻]
+        #v(0.35cm)
+        #section-tag([上層])
+        #v(0.18cm)
+        #text(size: 17.5pt)[纖維+與 Zero 放上層，承接健康與功能訴求]
+        #v(0.35cm)
+        #v(0.5cm) $arrow.r$ #text(size: 18pt)[全聯精選囤貨型規格，不追求量販店式的全面 SKU]
+      ]
     ],
-    [全聯常溫區陳列細節],
-    title: [全聯常溫區細部照片待補],
+    [
+      // #v(0cm)
+      #align(center)[
+        #image("figures/PXMart/全聯常溫區陳列原理.png", width: 85%)
+      ]
+    ],
   )
 ]
 
 #cola-slide(title: [全聯冰箱區陳列原理])[
-  #two-col-figure(
+  #v(-2cm)
+  #grid(
+    columns: (1.22fr, 0.78fr),
+    column-gutter: 0.45cm,
     [
-      - 冷藏櫃位於後段，主力集中在成人視線附近的黃金層
-      - 經典原味 600ml 約有 3 格排面，Zero 600ml 約有 2 格排面
-      - 冰櫃承接晚餐搭配生鮮、熟食的現喝需求
-      - 任 4 瓶 \$89 讓冷藏即飲與常溫囤貨共享同一組促銷邏輯
+      #box(inset: (left: 0.55cm))[
+        #v(1.5cm)
+        - 冷藏櫃位於後段
+          #linebreak() $arrow.r$ 主力集中在成人視線附近的黃金層
+        - 排面設計
+          - 經典原味 600ml $approx$ 3 格排面
+          - Zero 600ml $approx$ 2 格排面
+        - 冰櫃承接晚餐搭配生鮮、熟食的現喝需求
+        - *任 4 瓶 \$89*
+          #linebreak() $arrow.r$ 冷藏即飲 & 常溫囤貨*共享同一組促銷邏輯*
+      ]
     ],
-    [全聯冰箱區陳列],
-    title: [全聯冰箱照片待補],
+    [
+      #v(0.2cm)
+      #align(center)[
+        #image("figures/PXMart/全聯冰箱區陳列原理.png", width: 85%)
+      ]
+    ],
   )
 ]
 
 #cola-slide(title: [全聯的分流定價])[
   - 常溫區以 2L 與 1.25L 對標量販店，吸引社區家庭一次補貨
-  - 冷藏冰箱以 600ml 大排面與低門檻促銷，承接即時解渴需求
+  - 冷藏冰箱以 600ml 大排面與低門檻促銷，*承接即時解渴需求*
   - 同一組價格結構同時服務囤貨與即飲兩種情境
-  - 全聯用量販低價混搭超商冰櫃能見度，擴大社區市佔
+  - 全聯用量販低價混搭超商冰櫃能見度，*擴大社區市佔*
 ]
 
 #cola-section-slide(
@@ -471,16 +619,28 @@
   subtitle: [量販店的分流定價與陳列],
 )
 
-#cola-slide(title: [家樂福通路背景])[
-  #two-col-figure(
+#cola-slide(title: [家樂福勘查背景])[
+  #grid(
+    columns: (1fr, 1fr),
+    column-gutter: 0.45cm,
     [
-      - 大型量販店，附設停車場
-      - 購物動線長，會經過常溫貨架與生鮮區
-      - 可口可樂同時布局常溫大量採購與冷藏即飲
-      - 通路任務是兼顧銷量、毛利與衝動購買
+      #box(inset: (left: 0.55cm))[
+        // #v(1.2cm)
+        - 地點位於#link("https://maps.app.goo.gl/Af3dxwhe7yuxib5U9")[三峽北大店] B1 平面賣場
+        - 動線
+          1. 常溫貨架
+          2. 生鮮調理
+          3. 大冰箱 & 結帳小冰箱
+        - 可口可樂設於賣場中後段
+          #linebreak() $arrow.r$ *不靠入口搶眼位置*
+      ]
     ],
-    [家樂福外觀與通路背景],
-    title: [家樂福外觀 / 封面圖待補],
+    [
+      #v(-0.2cm)
+      #align(left)[
+        #image("figures/Carrefour/家樂福三峽北大店.png", width: 100%)
+      ]
+    ],
   )
 ]
 
@@ -531,55 +691,117 @@
   ))
 ]
 
-#cola-slide(title: [家樂福勘查背景])[
-  #two-col-figure(
-    [
-      - 地點位於#link("https://maps.app.goo.gl/Af3dxwhe7yuxib5U9")[三峽北大店] B1 平面賣場
-      - 動線依序經過常溫貨架、生鮮調理、大冰箱與結帳小冰箱
-      - 可口可樂設於賣場中後段，不在主入口
-      - 代表品牌依靠分區任務，而非入口搶眼位置
-    ],
-    [家樂福勘查地點],
-    title: [家樂福勘查地點照片待補],
-  )
-]
-
 #cola-slide(title: [常溫貨架分析])[
-  #two-col-figure(
+  #grid(
+    columns: (1fr, 1fr),
+    column-gutter: 0.45cm,
     [
-      - 碳酸品類約 40 格貨架
-      - 可口可樂約占 20% 視覺空間
-      - 大排面先搶視線，再壓縮競品曝光
-      - 常溫區主要承擔家庭採購與組合促銷
+      #box(inset: (left: 0.55cm))[
+        #v(1.2cm)
+        - 碳酸品類約 40 格貨架
+        - 可口可樂約占 20% 視覺空間
+        - 大排面先搶視線，再壓縮競品曝光
+        - 常溫區主要承擔家庭採購與組合促銷
+      ]
     ],
-    [家樂福常溫貨架排面],
-    title: [常溫貨架照片待補],
+    [
+      #v(-0.2cm)
+      #align(center)[
+        #image("figures/Carrefour/家樂福常溫貨架分析.jpeg", width: 90%)
+      ]
+    ],
   )
 ]
 
-#cola-slide(title: [常溫區陳列原理])[
-  #two-col-figure(
+#cola-slide(title: [全聯常溫貨架分析])[
+  #v(-2cm)
+  #let section-tag(body) = box(
+    fill: cola-red,
+    inset: (x: 0.18cm, y: 0.2cm),
+    radius: 0pt,
+  )[
+    #text(size: 20pt, weight: "bold", fill: white)[#body]
+  ]
+
+  #grid(
+    columns: (1.22fr, 0.78fr),
+    column-gutter: 0.45cm,
     [
-      - 上層放 2L 與大瓶，對應囤貨需求
-      - 黃金視線帶放 600ml 與促銷 POP
-      - 中下層放 330ml 組裝與迷你罐
-      - 重點不是賣單瓶，而是*提高每次最低消費額*
+      #box(inset: (left: 0.55cm))[
+        #v(1cm)
+        #section-tag([中下層])
+        #v(0.18cm)
+        #text(size: 17.5pt)[330ml 組裝與迷你罐]
+        #v(0.35cm)
+        #section-tag([中層])
+        #v(0.18cm)
+        #text(size: 17.5pt)[600ml 與促銷 POP]
+        #v(0.35cm)
+        #section-tag([上層])
+        #v(0.18cm)
+        #text(size: 17.5pt)[2L 與大瓶，對應囤貨需求]
+        #v(0.35cm)
+        #v(0.5cm) $arrow.r$ #text(size: 18pt)[重點不是賣單瓶，而是*提高每次最低消費額*]
+      ]
     ],
-    [家樂福常溫區陳列細節],
-    title: [常溫區細部照片待補],
+    [
+      // #v(0cm)
+      #align(center)[
+        #image("figures/Carrefour/家樂福常溫區陳列原理.jpeg", width: 85%)
+      ]
+    ],
   )
 ]
 
 #cola-slide(title: [冰箱區陳列原理])[
-  #two-col-figure(
+  #grid(
+    columns: (1fr, 1fr),
+    column-gutter: 0.45cm,
     [
-      - 大冰箱設在生鮮調理走道，綁定 Coke with Food
-      - 小冰箱設在結帳區，對應衝動購買
-      - 大冰箱可放 1250ml、600ml、330ml
-      - 小冰箱只留 600ml，即拿即走
+      #box(inset: (left: 0.55cm))[
+        #v(2cm)
+        - 大冰箱設在生鮮調理走道
+          #linebreak() $arrow.r$ #link(
+            "https://www.coca-colahellenic.com/en/media/news/corporate_news/2026/coke-and-meals-making-coca-cola-the-preferred-choice-with-food",
+          )[*Coke & Meals*]
+        - 大冰箱放置容量
+          #linebreak() $arrow.r$ 1250ml、600ml、330ml
+        - #text("小冰箱設在結帳區，對應衝動購買", fill: rgb("f2f2f2"))
+        - #text("小冰箱只留 600ml，即拿即走", fill: rgb("f2f2f2"))
+      ]
     ],
-    [家樂福冰箱區陳列],
-    title: [大冰箱 / 小冰箱照片待補],
+    [
+      #v(-0.2cm)
+      #align(center)[
+        #image("figures/Carrefour/家樂福冰箱區陳列原理-大冰箱.jpeg", width: 90%)
+      ]
+    ],
+  )
+]
+
+#cola-slide(title: [冰箱區陳列原理])[
+  #v(-2cm)
+  #grid(
+    columns: (1fr, 1fr),
+    column-gutter: 0.45cm,
+    [
+      #box(inset: (left: 0.55cm))[
+        #v(2cm)
+        - #text("大冰箱設在生鮮調理走道", fill: rgb("f2f2f2"))
+          #linebreak() #text(fill: rgb("f2f2f2"))[$arrow.r$ Coke & Meals]
+        - #text("大冰箱放置容量", fill: rgb("f2f2f2"))
+          #linebreak()
+          #text(fill: rgb("f2f2f2"))[$arrow.r$ 1250ml、600ml、330ml]
+        - 小冰箱設在結帳區，對應衝動購買
+        - 小冰箱只留 600ml，即拿即走
+      ]
+    ],
+    [
+      #v(0.1cm)
+      #align(center)[
+        #image("figures/Carrefour/家樂福冰箱區陳列原理-小冰箱.jpeg", width: 90%)
+      ]
+    ],
   )
 ]
 
@@ -587,5 +809,121 @@
   - 常溫區負責衝銷量，以折扣與組合價吸引家庭採購
   - 冷藏冰箱負責賺毛利，以即飲便利承接熟食與結帳動線
   - 同品牌在不同區域，價格角色完全不同
-  - 這是典型的分流定價與場景定價
+  - 典型的*分流定價*與*場景定價*
 ]
+
+#cola-section-slide(
+  title: [結論 <section-conclusion>],
+  subtitle: [跨通路的價格、陳列與配置整合],
+)
+
+#cola-slide(title: [價格策略])[
+  #v(-1cm)
+  #align(center)[
+    #table-block(
+      [價格策略比較],
+      ([面向], [小容量 (330/600ml)], [大容量 (1.25/2L)]),
+      (
+        ([定價邏輯], [高單位價，賣便利], [低單位價，賣量體]),
+        ([主通路], [便利商店冷藏櫃], [超市/量販常溫架]),
+        ([促銷手法], [第二件特價、折扣], [多入組、箱購價、任選]),
+        ([消費情境], [即飲、搭餐、臨時解渴], [家庭補貨、聚會分享、囤貨]),
+        ([商業效果], [提升加購率與周轉], [提高客單量與總銷量]),
+      ),
+      (3.2cm, 7cm, 7.5cm),
+    )
+  ]
+]
+
+#cola-slide(title: [商品陳列])[
+  #align(center)[
+    #table-block(
+      [商品陳列比較],
+      ([面向], [冷藏冰箱], [常溫貨架]),
+      (
+        ([主力規格], [600ml 即飲規格], [1.25L/2L 與多入組]),
+        ([陳列位置], [黃金視線帶、搭餐動線], [大排面、補貨動線]),
+        ([核心訴求], [拿取快、即開即喝], [單位價低、一次買足]),
+        ([購買型態], [即時需求、衝動加購], [計畫採購、家庭囤貨]),
+        ([營運效果], [提升即飲轉換率], [提升客單量與帶出量]),
+      ),
+      (3.2cm, 7.5cm, 7cm),
+    )
+  ]
+]
+
+#cola-slide(title: [通路商品配置])[
+  #align(center)[
+    #table-block(
+      [通路商品配置比較],
+      ([面向], [便利商店（7-11/全家）], [超市/量販（全聯/家樂福）]),
+      (
+        ([SKU 結構], [口味多元，含限定款], [家庭號與多入組占比高]),
+        ([容量重心], [小容量、冷藏即飲], [大容量、常溫囤貨]),
+        ([空間策略], [小空間，高周轉優先], [大空間，大排面導購]),
+        ([陳列配置], [冷藏櫃為主], [冷藏 + 常溫雙區並行]),
+        ([商業目標], [強化即飲與順手加購], [拉高單次購買量與總銷量]),
+      ),
+      (3.2cm, 6.5cm, 7.5cm),
+    )
+  ]
+]
+
+#cola-slide(title: [總結])[
+  #let section-tag(body) = box(
+    fill: cola-red,
+    inset: (x: 0.18cm, y: 0.2cm),
+    radius: 0pt,
+  )[
+    #text(size: 16pt, weight: "bold", fill: white)[#body]
+  ]
+
+  #let conclusion-row(icon, title, desc) = grid(
+    columns: (1.8cm, 1fr),
+    column-gutter: 0.55cm,
+    align: (center + horizon, top),
+    [
+      #box(
+        width: 1.8cm,
+        height: 1.8cm,
+        radius: 70%,
+        fill: cola-red,
+      )[
+        #align(center + horizon)[
+          #icon
+        ]
+      ]
+    ],
+    [
+      #text(size: 22pt, weight: "bold")[#title]
+      #v(0.06cm)
+      #text(size: 18pt)[#desc]
+    ],
+  )
+
+  #box(inset: (left: 1cm))[
+    #v(-1cm)
+    #conclusion-row(
+      [#fa-icon("bullseye", solid: true, size: 22pt, fill: white)],
+      [場景化策略],
+      [同品牌分場景，價格、促銷、陳列隨通路調整。],
+    )
+    #v(1.8cm)
+    #conclusion-row(
+      [#fa-icon("cart-shopping", solid: true, size: 22pt, fill: white)],
+      [通路分工],
+      [便利商店衝即飲加購；超市量販拉補貨與囤貨。],
+    )
+    #v(1.8cm)
+    #conclusion-row(
+      [#fa-icon("chart-line", solid: true, size: 22pt, fill: white)],
+      [成長方向],
+      [以會員資料與數位促銷，持續提升轉換、客單與黏著。],
+    )
+  ]
+]
+
+#cola-section-slide(
+  title: [感謝聆聽與指教 <section-thanks>],
+  subtitle: [Thanks for Your Listening],
+)

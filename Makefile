@@ -1,5 +1,6 @@
 TYPST=typst
-FONT_PATH=fonts
+ROOT_DIR:=$(abspath .)
+FONT_PATH:=$(ROOT_DIR)/fonts
 SRC=coca-cola.typ
 OUT=coca-cola.pdf
 
@@ -11,7 +12,7 @@ $(OUT): $(SRC)
 	$(TYPST) compile --font-path $(FONT_PATH) --ignore-system-fonts $< $@
 
 watch:
-	$(TYPST) watch --font-path $(FONT_PATH) --ignore-system-fonts $(SRC) $(OUT)
+	$(TYPST) watch --root $(ROOT_DIR) --font-path $(FONT_PATH) --ignore-system-fonts $(SRC) $(OUT)
 
 clean:
 	rm -f $(OUT)

@@ -82,7 +82,7 @@
 #let cola-font-size-caption = 12pt
 
 /// Default table header text.
-#let cola-font-size-table-header = 14pt
+#let cola-font-size-table-header = 16pt
 
 /// Compact table header text for dense tables.
 #let cola-font-size-table-header-compact = 16pt
@@ -121,7 +121,7 @@
 #let cola-table-header-cell-inset-x = 9pt
 
 /// Top and bottom padding for table header cells.
-#let cola-table-header-cell-inset-y = 9pt
+#let cola-table-header-cell-inset-y = 12pt
 
 /// Left and right padding for table body cells.
 #let cola-table-body-cell-inset-x = 9pt
@@ -444,8 +444,15 @@
   ]
 }
 
-/// Numbered figure caption prefixed with 圖 (Figure).
-#let figure-caption(caption) = caption-block([圖], caption, fig-counter, cola-figure-caption-gap)
+/// Numbered figure caption formatted as 圖x：caption.
+#let figure-caption(caption) = context {
+  let n = fig-counter.get().first()
+  fig-counter.step()
+  v(cola-figure-caption-gap)
+  align(center)[
+    #text(size: 10pt, fill: gray)[圖#n：#caption]
+  ]
+}
 
 /// Numbered table caption prefixed with 表 (Table).
 #let table-caption(caption) = caption-block([表], caption, tab-counter, cola-table-caption-gap)
