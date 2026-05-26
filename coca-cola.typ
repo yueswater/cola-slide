@@ -14,7 +14,7 @@
     authors: [
       李冠儀 #h(1.1em) 宋品岳 #h(1.1em) 林容亘 #h(1.1em) 邱郁文
       #linebreak()
-      涂馨予 #h(1.1em) 蔡欣哲 #h(1.1em) 顏苡蓁
+      涂馨予 #h(1.1em) 蔡欣哲 #h(1.1em) 顏苓蓁
     ],
     extra: [Group 6 | May 28, 2026],
     footer: [Coca-Cola Mini Project],
@@ -231,7 +231,8 @@
   )
 ]
 
-#cola-slide(title: [7-11 價格觀察])[
+#cola-slide(title: [價格觀察])[
+  #v(-2cm)
   #align(center)[
     #table-block(
       [7-11 小容量與中容量價格],
@@ -240,30 +241,17 @@
         ([經典原味 200ml], [\$16], [無], [\$8.00], [小容量單價高]),
         ([經典原味 330ml], [\$25], [無], [\$7.58], [標準罐裝即飲]),
         ([經典原味 435ml], [\$29], [第二件 6 折], [約 \$5.33], [用折扣刺激多買]),
-      ),
-      (5cm, 3cm, 4.5cm, 5cm, 5.5cm),
-      header-size: cola-font-size-table-header-compact,
-    )
-  ]
-]
-
-#cola-slide(title: [7-11 價格觀察])[
-  #align(center)[
-    #table-block(
-      [7-11 大容量與主促銷規格],
-      ([品項], [原價], [促銷], [每100ml單價], [觀察]),
-      (
-        ([經典 / Zero / 纖維+ / 草莓 600ml], [\$35], [2 件 \$49], [約 \$4.08], [主要促銷規格]),
+        ([經典 / Zero / 纖維 +#linebreak()/ 草莓 600ml], [\$35], [2 件 \$49], [約 \$4.08], [主要促銷規格]),
         ([經典原味 920ml], [\$45], [特價 \$36], [約 \$3.91], [大容量也有促銷感]),
-        ([經典原味 2L], [\$60], [無], [\$3.00], [單價最低 #linebreak() 不屬即飲主力]),
+        ([經典原味 2L], [\$60], [無], [\$3.00], [單價最低且非即飲主力]),
       ),
-      (6.5cm, 3cm, 4cm, 4.5cm, 6cm),
+      (6cm, 3cm, 4.5cm, 5cm, 7cm),
       header-size: cola-font-size-table-header-compact,
     )
   ]
 ]
 
-#cola-slide(title: [7-11 冷藏陳列])[
+#cola-slide(title: [冷藏陳列])[
   #let section-tag(body) = box(
     fill: cola-red,
     inset: (x: 0.18cm, y: 0.2cm),
@@ -322,7 +310,7 @@
   )
 ]
 
-#cola-slide(title: [7-11 通路定位])[
+#cola-slide(title: [通路定位])[
   - 消費情境：臨時解渴、搭餐、通勤外帶
   - 小容量適合即飲，但單位價格較高
   - 大容量單位價格較低，但偏離即時飲用情境
@@ -405,7 +393,7 @@
   ))
 ]
 
-#cola-slide(title: [全家冰箱區陳列])[
+#cola-slide(title: [冰箱區陳列])[
   #v(-2cm)
   #grid(
     columns: (1.22fr, 0.78fr),
@@ -431,7 +419,7 @@
   )
 ]
 
-#cola-slide(title: [全家的分流定價])[
+#cola-slide(title: [全家分流定價])[
   - 開放式冷藏櫃偏配餐飲料，可口可樂則留在更冰的封閉式玻璃冰櫃
   - 中段視線帶的 600ml 承接即飲需求，最底層 2L 承接家庭型補貨
   - 封閉式冰櫃的整齊排面與低溫表現，強化可樂的冰感與氣泡感
@@ -515,7 +503,7 @@
 ]
 
 
-#cola-slide(title: [全聯常溫貨架分析])[
+#cola-slide(title: [常溫貨架分析])[
   #v(-2cm)
   #grid(
     columns: (1.22fr, 0.78fr),
@@ -540,7 +528,7 @@
   )
 ]
 
-#cola-slide(title: [全聯常溫貨架分析])[
+#cola-slide(title: [常溫貨架分析])[
   #v(-2cm)
   #let section-tag(body) = box(
     fill: cola-red,
@@ -580,7 +568,7 @@
   )
 ]
 
-#cola-slide(title: [全聯冰箱區陳列原理])[
+#cola-slide(title: [冰箱區陳列])[
   #v(-2cm)
   #grid(
     columns: (1.22fr, 0.78fr),
@@ -713,7 +701,7 @@
   )
 ]
 
-#cola-slide(title: [全聯常溫貨架分析])[
+#cola-slide(title: [常溫區陳列])[
   #v(-2cm)
   #let section-tag(body) = box(
     fill: cola-red,
@@ -753,7 +741,7 @@
   )
 ]
 
-#cola-slide(title: [冰箱區陳列原理])[
+#cola-slide(title: [冰箱區陳列])[
   #v(-2cm)
   #grid(
     columns: (1fr, 1fr),
@@ -780,7 +768,7 @@
   )
 ]
 
-#cola-slide(title: [冰箱區陳列原理])[
+#cola-slide(title: [冰箱區陳列])[
   #v(-2cm)
   #grid(
     columns: (1fr, 1fr),
