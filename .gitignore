@@ -3,3 +3,13 @@
 .idea/
 *.tmp
 *.swp
+
+# Python / Poetry
+.venv/
+__pycache__/
+
+# Typst / typ2pptx intermediate
+*.artifact.svg
+
+# Generated presentation output
+presentation/
