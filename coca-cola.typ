@@ -754,6 +754,7 @@
 ]
 
 #cola-slide(title: [冰箱區陳列原理])[
+  #v(-2cm)
   #grid(
     columns: (1fr, 1fr),
     column-gutter: 0.45cm,
