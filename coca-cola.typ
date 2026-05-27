@@ -775,46 +775,12 @@
       ]
     ],
   )
-]
 
-#cola-slide(title: [常溫區陳列：檔期活動])[
-  #v(-2cm)
-  #let section-tag(body) = box(
-    fill: cola-red,
-    inset: (x: 0.18cm, y: 0.2cm),
-    radius: 0pt,
-  )[
-    #text(size: 20pt, weight: "bold", fill: white)[#body]
-  ]
-
-  #grid(
-    columns: (1.22fr, 0.78fr),
-    column-gutter: 0.45cm,
-    [
-      #box(inset: (left: 0.55cm))[
-        #v(0.85cm)
-        #section-tag([檔期活動])
-        #v(0.22cm)
-        #text(size: 18pt)[太古全系列滿 #strong[\$249]，即可用 #strong[\$599] 加購]
-        #v(0.08cm)
-        #text(size: 18pt, weight: "bold")[價值 #strong[\$1,299] 的芬達迷你相機]
-        #v(0.48cm)
-        #section-tag([陳列重點])
-        #v(0.22cm)
-        #text(size: 18pt)[
-          - 將 #strong[迷你罐] 置於黃金視線
-          - 搭配促銷 POP，放大加購誘因
-        ]
-        #v(0.5cm)
-        #text(size: 18pt)[$arrow.r$ 讓消費者更快湊單、拉高客單價]
-      ]
-    ],
-    [
-      // #v(0cm)
-      #align(center)[
-        #image("figures/Carrefour/芬達相機.png", width: 85%)
-      ]
-    ],
+  #cola-floating-image-badge(
+    "figures/Carrefour/芬達相機.png",
+    x: 9.35cm,
+    y: 1cm,
+    width: 5cm,
   )
 ]
 

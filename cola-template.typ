@@ -607,6 +607,17 @@
   ]
 ]
 
+/// Floating image positioned absolutely inside a slide.
+#let cola-floating-image-badge(
+  image-path,
+  x: 0cm,
+  y: 0cm,
+  width: 0.74cm,
+  anchor: top + left,
+) = place(anchor, dx: x, dy: y)[
+  #image(image-path, width: width)
+]
+
 /// Superscript footnote marker for use inside slide content.
 #let note-ref(n, color: black) = text(
   size: 8pt,
