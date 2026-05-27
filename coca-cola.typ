@@ -935,6 +935,12 @@
   ]
 ]
 
+#cola-slide(title: [通路價格差異])[
+  #align(center)[
+    #image("figures/channel_price_comparison.pdf", width: 80%)
+  ]
+]
+
 #cola-slide(title: [總結])[
   #let section-tag(body) = box(
     fill: cola-red,

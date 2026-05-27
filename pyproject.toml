@@ -8,7 +8,8 @@ authors = [
 readme = "README.md"
 requires-python = ">=3.10,<4.0"
 dependencies = [
-    "typ2pptx (>=0.2.1,<0.3.0)"
+    "typ2pptx (>=0.2.1,<0.3.0)",
+    "matplotlib (>=3.10.9,<4.0.0)"
 ]
 
 
